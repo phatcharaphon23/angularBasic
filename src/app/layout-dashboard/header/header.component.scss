@@ -1,0 +1,32 @@
+@media only screen and (min-width: 770px){
+    .mat-icon-button {
+        display: none;
+
+    }
+    .logo{
+        display: none;
+    }
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.mat-icon-button{
+    display: block;
+    margin: 20px auto 0px 20px;
+}
+
+.toggleMenu{
+    width: 100%;
+    min-width: calc(100vh - 90px);
+    height: auto;
+}
+
+.menu{
+    color:white;
+}
+    

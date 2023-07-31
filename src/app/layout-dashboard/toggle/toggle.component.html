@@ -1,0 +1,10 @@
+<mat-nav-list class="pb-4">
+  <div class="logo py-4">
+    <img src="/assets/image.jpg" />
+  </div>
+  <a routerLink="dashboard" (click)="(onClose)" mat-dialog-close="true"><i class="material-icons">menu</i> Dashboard</a>
+  <br />
+  <a routerLink="Login" (click)="(onClose)" mat-dialog-close="true"><i class="material-icons">login</i> Log</a>
+  <br />
+  <a routerLink="Logout" (click)="logout()" mat-dialog-close="true"><i class="material-icons">logout</i> Log out</a>
+</mat-nav-list>

@@ -1,0 +1,28 @@
+.page {
+    color: white;
+    padding: 0 1rem;
+    background: whitesmoke;
+    &__box {
+        min-height: 150px;
+        background: plum;
+        margin: 0 -1rem;
+        font-size: medium;
+        .mat-icon-button{
+            top: -2px;
+        }
+    }
+    &__cotent {
+        margin-top: -4rem;
+        @media screen and (min-width: 0px) {
+            width: 97%;
+        }
+        @media screen and (min-width: 900px) {
+            width: 98%;
+        }
+        @media screen and (min-width: 1500px) {
+            width: 99%;
+        }
+    
+        }
+    
+}

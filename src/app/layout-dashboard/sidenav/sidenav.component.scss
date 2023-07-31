@@ -1,0 +1,28 @@
+.logo {
+    text-align: center;
+    img {
+        width: 100px;
+    }
+}
+
+a{
+    display: flex;
+    padding-top: 7px;
+    margin-bottom: -20px;
+    text-decoration: none;
+    
+    color: var(text-primary) !important;
+    font-size: medium;
+    height: 30px !important;
+    ::ng-deep{
+        &:hover{
+            font-weight: bold;
+            background-color: white !important;
+        }
+    }
+    &.logout{
+        color: black;
+        cursor: pointer;
+    }
+    
+}

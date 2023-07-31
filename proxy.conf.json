@@ -1,0 +1,20 @@
+{
+    "/gest": {
+        "target": "https://127.0.0.1:8080",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/api": {
+        "target": "https://127.0.0.1:8080",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    "/auth": {
+        "target": "http://192.168.200.1",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

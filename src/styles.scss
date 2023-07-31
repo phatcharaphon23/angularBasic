@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::-ms-reveal {
+    display: none;
+}
+
+.mat-mdc-snack-bar-container {
+    &.success {
+        --mdc-snackbar-container-color: green;
+        --mat-mdc-snack-bar-button-color: #2196f3;
+        --mdc-snackbar-supporting-text-color: #2196f3;
+    }
+    &.error {
+        --mdc-snackbar-container-color: yellow;
+        --mat-mdc-snack-bar-button-color: #2196f3;
+        --mdc-snackbar-supporting-text-color: red;
+      }
+  }
+
+
+

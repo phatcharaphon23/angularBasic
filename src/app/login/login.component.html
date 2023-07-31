@@ -1,0 +1,62 @@
+<div class="login">
+  <mat-card class="card-login text-center">
+    <mat-card-header>
+      <img src="/assets/image.jpg" style="width: 50px" />
+    </mat-card-header>
+    <mat-card-content [formGroup]="form">
+      <p>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            _username
+            placeholder="Username"
+            formControlName="username"
+            (cut)="onPrevent($event)"
+            (copy)="onPrevent($event)"
+            (paste)="onPrevent($event)"
+          />
+          <!-- (keyup)="onKeyup($event)" -->
+          <mat-hint
+            class="text-danger"
+            *ngIf="form.controls['username'].invalid"
+            >This fild</mat-hint
+          >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            _password
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            (keyup.Enter)="onSubmit()"
+
+            (cut)="onPrevent($event)"
+            (copy)="onPrevent($event)"
+            (paste)="onPrevent($event)"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-hint
+            class="text-danger"
+            *ngIf="form.controls['password'].invalid"
+            >This fild</mat-hint
+          >
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-button color="primary" (click)="onSubmit()">login</button>
+    </mat-card-footer>
+  </mat-card>
+</div>
