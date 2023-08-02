@@ -12,6 +12,7 @@ constructor(private router:Router){}
   logout(){
     localStorage.clear();
     this.router.navigateByUrl('/login')
+    // opened=false;s
   }
 
 }

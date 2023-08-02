@@ -1,17 +1,18 @@
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../__service/http.service';
 import { JwtService } from '../__service/jwt.service';
 import { Router } from '@angular/router';
 import { SnackService } from '../__service/snack.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent  implements OnInit{
   hide: boolean = true;
   submitted: boolean = false;
 
@@ -32,6 +33,21 @@ export class LoginComponent {
   // onKeyup(e: KeyboardEvent) {
   //   console.log(e.key);
   // }
+  
+  ngOnInit() : void{
+    this.CheckLoggedIn();
+
+  }
+  CheckLoggedIn(){
+    let token = localStorage.getItem('token') || '';
+    try{
+      let jwt = this.jwt.getDecodeAccessToken(token);
+      this.router.navigateByUrl('dashboard');
+    } catch (err){
+      localStorage.clear();
+    }
+    
+  }
 
   onSubmit() {
     if (!this.submitted) {

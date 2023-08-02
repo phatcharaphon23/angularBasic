@@ -4,6 +4,7 @@ import { LayoutDashboardComponent } from './layout-dashboard/layout-dashboard.co
 import { LayoutLoginComponent } from './layout-login/layout-login.component';
 import { GlobalService } from './__service/global.service';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -40,7 +41,8 @@ const routes: Routes = [
   {
     path:'**',
     redirectTo: 'login'
-  }
+  },
+  
 ];
 
 @NgModule({

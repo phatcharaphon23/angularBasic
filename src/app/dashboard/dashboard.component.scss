@@ -26,3 +26,29 @@
         }
     
 }
+
+.mat-column-id{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 70px !important;
+    // width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens:auto ;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-action{
+    justify-content: center;
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 70px !important;
+    width: 100px !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens:auto ;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}

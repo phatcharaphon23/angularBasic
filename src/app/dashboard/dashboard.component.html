@@ -3,23 +3,92 @@
   <div class="page_cntent shadow position-relative">
     <div class="page_cntent-data position-relative">
       <mat-accordion displayMode="flat">
-        <mat-expansion-panel>
+        <!-- TODO LIST Add-->
+        <mat-expansion-panel
+          [disabled]="true"
+          [expanded]="addUser"
+          [hidden]="!addUser"
+          hideToggle
+        >
           <mat-expansion-panel-header>
-            <mat-panel-title>01</mat-panel-title>
+            <mat-panel-title>Add user</mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Data list</div>
+          <div>Data add</div>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <!-- TODO LIST Edit-->
+        <mat-expansion-panel
+          [disabled]="true"
+          [expanded]="editUser"
+          [hidden]="!editUser"
+          hideToggle
+        >
           <mat-expansion-panel-header>
-            <mat-panel-title>02</mat-panel-title>
+            <mat-panel-title>Edit</mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Data list</div>
+          <div>Data edit</div>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <!-- TODO LIST USER-->
+        <mat-expansion-panel
+          [disabled]="true"
+          [expanded]="showlist"
+          [hidden]="!showlist"
+          hideToggle
+        >
           <mat-expansion-panel-header>
-            <mat-panel-title>03</mat-panel-title>
+            <mat-panel-title>User list</mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Data list</div>
+          <div>
+            <mat-table [dataSource]="users">
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+                <mat-cell *matCellDef="let elememt">{{ elememt.id }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef>USERNAME</mat-header-cell>
+                <mat-cell *matCellDef="let elememt">{{
+                  elememt.username
+                }}</mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>ACTION</mat-header-cell>
+                <mat-cell *matCellDef="let elememt">
+                  <mat-icon
+                    [mat-menu-trigger-for]="action_menu"
+                    style="cursor: pointer"
+                    >more_vert</mat-icon
+                  >
+                  <mat-menu #action_menu>
+                    <button mat-menu-item>
+                      <mat-icon>edit</mat-icon>Edit {{ elememt.username }}
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>password</mat-icon> Change password
+                      {{ elememt.username }}
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>Delete {{ elememt.username }}
+                    </button>
+                  </mat-menu>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="columns"> </mat-header-row>
+              <mat-row *matRowDef="let row; columns: columns"></mat-row>
+            </mat-table>
+            <div class="row">
+              <div class="small text-end">
+                <span class="pagelabel text-muted">
+                  Page {{ page + " of " + pages }}
+                </span>
+                <button mat-icon-button (click)="onBack()" [disabled]="ifFirst">
+                  <mat-icon>arrow_back_ios_new</mat-icon>
+                </button>
+                <button mat-icon-button (click)="onNext()" [disabled]="ifEnd">
+                  <mat-icon>arrow_forward_ios</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>

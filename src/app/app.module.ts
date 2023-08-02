@@ -30,8 +30,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 import { MatTableModule } from '@angular/material/table';
+import { Db01Component } from './db01/db01.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,7 @@ import { MatTableModule } from '@angular/material/table';
     LogComponent,
     UsernameDirective,
     PasswordDirective,
+    Db01Component,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,8 @@ import { MatTableModule } from '@angular/material/table';
     MatSnackBarModule,
     MatExpansionModule,
     MatTableModule,
+    MatMenuModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],
