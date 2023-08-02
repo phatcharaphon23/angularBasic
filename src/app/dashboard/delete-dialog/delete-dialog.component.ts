@@ -23,5 +23,6 @@ export class DeleteDialogComponent {
   // logout(){
   //   localStorage.clear();
   //   this.router.navigateByUrl('/login');
+  
   // }
 }
