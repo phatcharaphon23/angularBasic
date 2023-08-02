@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpService } from '../__service/http.service';
 import { SnackService } from '../__service/snack.service';
 import { Route, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,14 +16,15 @@ export class DashboardComponent {
   pages: number = 1;
   ifFirst: boolean = false;
   ifEnd: boolean = false;
-  showlist: boolean= true;
-  addUser: boolean= false;
-  editUser: boolean= false;
+  showlist: boolean = true;
+  addUser: boolean = false;
+  editUser: boolean = false;
 
   constructor(
     private http: HttpService,
     private _snackBar: SnackService,
-    private router: Router
+    private router: Router,
+    private dialogDelet: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -64,16 +67,19 @@ export class DashboardComponent {
     this.ifEnd = this.page === this.pages ? true : false;
     this.page = this.page = this.pages ? this.page : this.pages++;
   }
-  onAddUser(){
+  onAddUser() {
     this.addUser = true;
-    this.editUser= false;
-    this.showlist= false;
+    this.editUser = false;
+    this.showlist = false;
   }
-  onEditUser(){
+  onEditUser(e: any) {
     this.addUser = false;
-    this.editUser= true;
-    this.showlist= false;
+    this.editUser = true;
+    this.showlist = false;
+    // console.log(e);
   }
-
-
+  openDialog(){
+    this.dialogDelet.open(DeleteDialogComponent);
+  }
+  
 }

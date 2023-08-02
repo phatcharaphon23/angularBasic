@@ -36,6 +36,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { MatTableModule } from '@angular/material/table';
 import { Db01Component } from './db01/db01.component';
+import { DeleteDialogComponent } from './dashboard/delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { Db01Component } from './db01/db01.component';
     UsernameDirective,
     PasswordDirective,
     Db01Component,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

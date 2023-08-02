@@ -1,54 +1,52 @@
 .page {
-    color: white;
-    padding: 0 1rem;
-    background: whitesmoke;
-    &__box {
-        min-height: 150px;
-        background: plum;
-        margin: 0 -1rem;
-        font-size: medium;
-        .mat-icon-button{
-            top: -2px;
-        }
+  color: white;
+  padding: 0 1rem;
+  background: whitesmoke;
+  &__box {
+    min-height: 150px;
+    background: plum;
+    margin: 0 -1rem;
+    font-size: medium;
+    .mat-icon-button {
+      top: -2px;
     }
-    &__cotent {
-        margin-top: -4rem;
-        @media screen and (min-width: 0px) {
-            width: 97%;
-        }
-        @media screen and (min-width: 900px) {
-            width: 98%;
-        }
-        @media screen and (min-width: 1500px) {
-            width: 99%;
-        }
-    
-        }
-    
+  }
+  &__cotent {
+    margin-top: -4rem;
+    @media screen and (min-width: 0px) {
+      width: 97%;
+    }
+    @media screen and (min-width: 900px) {
+      width: 98%;
+    }
+    @media screen and (min-width: 1500px) {
+      width: 99%;
+    }
+  }
 }
 
-.mat-column-id{
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 70px !important;
-    // width: 100px !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens:auto ;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+.mat-column-id {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 70px !important;
+  // width: 100px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
-.mat-column-action{
-    justify-content: center;
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 70px !important;
-    width: 100px !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens:auto ;
-    -webkit-hyphens: auto;
-    hyphens: auto;
+.mat-column-action {
+  justify-content: center;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 70px !important;
+  width: 100px !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
