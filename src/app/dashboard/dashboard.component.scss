@@ -1,17 +1,17 @@
 .page {
   color: white;
   padding: 0 1rem;
-  background: whitesmoke;
+//   background: whitesmoke;
   &__box {
-    min-height: 150px;
-    background: plum;
+    min-height: 140px;
+    background: indigo;
     margin: 0 -1rem;
     font-size: medium;
     .mat-icon-button {
       top: -2px;
     }
   }
-  &__cotent {
+  &_content {
     margin-top: -4rem;
     @media screen and (min-width: 0px) {
       width: 97%;
