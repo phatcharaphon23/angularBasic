@@ -64,6 +64,16 @@ export class DashboardComponent {
     this.ifEnd = this.page === this.pages ? true : false;
     this.page = this.page = this.pages ? this.page : this.pages++;
   }
+  onAddUser(){
+    this.addUser = true;
+    this.editUser= false;
+    this.showlist= false;
+  }
+  onEditUser(){
+    this.addUser = false;
+    this.editUser= true;
+    this.showlist= false;
+  }
 
 
 }

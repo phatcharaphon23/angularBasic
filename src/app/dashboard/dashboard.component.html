@@ -22,8 +22,14 @@
           [hidden]="!editUser"
           hideToggle
         >
-          <mat-expansion-panel-header>
-            <mat-panel-title>Edit</mat-panel-title>
+          <mat-expansion-panel-header style="cursor: default">
+            <mat-panel-title
+              ><span (click)="onEditUser()" class="text-primary" style="cursor:
+              pointer" ><mat-icon>Edit</mat-icon>
+                
+              </span>
+             </mat-panel-title
+            >
           </mat-expansion-panel-header>
           <div>Data edit</div>
         </mat-expansion-panel>
@@ -34,8 +40,15 @@
           [hidden]="!showlist"
           hideToggle
         >
-          <mat-expansion-panel-header>
-            <mat-panel-title>User list</mat-panel-title>
+          <mat-expansion-panel-header style="cursor: default">
+            <mat-panel-title
+              ><span
+                (click)="onAddUser()"
+                class="text-primary"
+                style="cursor: pointer"
+                ><mat-icon>person_add_adt_1</mat-icon> &nbsp;ADD USER</span
+              >
+            </mat-panel-title>
           </mat-expansion-panel-header>
           <div>
             <mat-table [dataSource]="users">
