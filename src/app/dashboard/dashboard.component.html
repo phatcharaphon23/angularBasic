@@ -26,7 +26,7 @@
           <mat-expansion-panel-header>
             <mat-panel-title>EDIT USER</mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Data edit</div>
+          <div><app-edit [user] = 'user' (controls)="onControls($event)"></app-edit></div>
         </mat-expansion-panel>
 
         <!-- TODO LIST USER-->
@@ -72,7 +72,6 @@
                       <span>
                         <mat-icon>edit</mat-icon>Edit {{ elememt.username }}
                       </span>
-                      
                     </button>
 
                     <button mat-menu-item>
@@ -90,8 +89,8 @@
               <mat-row *matRowDef="let row; columns: columns"></mat-row>
             </mat-table>
             <div class="row">
-              <div class="small text-end " >
-                <span class="pagelabel text-muted ">
+              <div class="small text-end">
+                <span class="pagelabel text-muted">
                   Page {{ page + " of " + pages }}
                 </span>
                 <button mat-icon-button (click)="onBack()" [disabled]="ifFirst">

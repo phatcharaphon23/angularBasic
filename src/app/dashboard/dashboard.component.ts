@@ -19,6 +19,7 @@ export class DashboardComponent {
   showlist: boolean = true;
   addUser: boolean = false;
   editUser: boolean = false;
+  user: any;
 
   constructor(
     private http: HttpService,
@@ -29,6 +30,7 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.getList();
+    
   }
 
   columns: string[] = ['id', 'username', 'action'];
@@ -59,6 +61,12 @@ export class DashboardComponent {
       });
   }
 
+  // updateUser(){
+  //   this.
+  // }
+  
+ 
+
   onBack() {
     this.ifFirst = this.page === 1 ? true : false;
     this.page = this.page === 1 ? this.page : this.page--;
@@ -73,13 +81,26 @@ export class DashboardComponent {
     this.showlist = false;
   }
   onEditUser(e: any) {
+    this.user = e;
+    //
     this.addUser = false;
     this.editUser = true;
     this.showlist = false;
+
     // console.log(e);
   }
-  openDialog(){
+  openDialog() {
     this.dialogDelet.open(DeleteDialogComponent);
   }
-  
+
+  onControls(e: any) {
+    console.log(e);
+    if (e.control === 'close') {
+      this.addUser = false;
+      this.editUser = false;
+      this.showlist = true;
+    }
+  }
+
+
 }
