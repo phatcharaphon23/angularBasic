@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnackService {
+  constructor(
+    private _snackBar: MatSnackBar,
+    
+    ) {}
 
-  constructor(private _snackBar :MatSnackBar) { }
-
-  openSnackBar( msg: string, msgType: string,timeout:number) {
+  openSnackBar(msg: string, msgType: string, timeout: number) {
     this._snackBar.open(msg, 'กดปิด', {
-      duration:timeout,
-      
+      duration: timeout,
+
       horizontalPosition: 'end',
       verticalPosition: 'top',
-    panelClass:[msgType]
+      panelClass: [msgType],
     });
   }
 }
