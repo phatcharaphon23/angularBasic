@@ -12,7 +12,17 @@ import { SnackService } from 'src/app/__service/snack.service';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+  username : string = '';
+
+  users: any;
+  page: number = 1;
+  pages: number = 1;
+  ifFirst: boolean = false;
+  ifEnd: boolean = false;
   hide: boolean = true;
+  showlist: boolean = true;
+  addUser: boolean = false;
+  editUser: boolean = false;
   submitted: boolean = false;
   //Update
   form = new FormGroup({
@@ -23,6 +33,7 @@ export class EditComponent implements OnInit {
   });
   @Input() set user(value: any) {
     if (value) {
+      this.username = value.username;
       // console.log(value);
       this.form.patchValue({
         id: value.id,
@@ -42,43 +53,47 @@ export class EditComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+    // this.getList();
+    // this.onSave();
+  }
   onClose() {
     this.controls.emit({
       control: 'close',
     });
   }
 
+ 
+
   onSave() {
+    // console.log(this.user);
     if (!this.submitted) {
       this.submitted = true;
       let id = this.form.get('id')?.value || '';
       let username = this.form.get('username')?.value || '';
       let password = this.form.get('password')?.value || '';
-      if (!id) {
-        this.form.controls['id'].setErrors({ ivalid: true });
-      }
+
       if (!username) {
         this.form.controls['username'].setErrors({ invalid: true });
+        // console.log("// ");
       }
       if (!password) {
         this.form.controls['password'].setErrors({ ivalid: true });
+        // console.log("password");
       }
 
-      if (!id || !username || !password) {
+      if (!username || !password) {
         return;
       }
-
       // let options = {
       //   headers: new HttpHeaders().set(
       //     'Content-Type',
       //     'application/json; charset=utf-8'
       //   ),
       // };
-
       let body = JSON.stringify({
         id: id,
+        username_org: this.username,
         username: username,
         password: password,
       });
@@ -86,32 +101,17 @@ export class EditComponent implements OnInit {
       this.http
         .POST('/api/update_user', body)
         .then((res: any) => {
-          // console.log(res)
+          this.controls.emit({
+            control: 'closecall',
+          });
+          // console.log(res);
         })
-        // .then(() => {
-        //   this._snackBar.openSnackBar(
-        //     'Welcome back' + localStorage.getItem('online'),
-        //     'success',
-        //     4000
-        //   );
-        //   this.router.navigateByUrl('/dashboard');
-        // })
         .catch((err) => {
-          if (err.includes('Unauthorized')) {
-            localStorage.clear();
-            this.router.navigateByUrl('/login');
-          }
           this._snackBar.openSnackBar(err, 'error', 10000);
+        })
+        .finally(() => {
+          this.submitted = false;
         });
-        
-      this.submitted = false;
     }
-    // console.log(data);
   }
-
-  onPrevent(e: ClipboardEvent) {
-    e.preventDefault();
-  }
-
-  // console.log(this.form.controls['username']?.value)
 }

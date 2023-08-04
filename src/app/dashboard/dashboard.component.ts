@@ -30,7 +30,6 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.getList();
-    
   }
 
   columns: string[] = ['id', 'username', 'action'];
@@ -64,8 +63,6 @@ export class DashboardComponent {
   // updateUser(){
   //   this.
   // }
-  
- 
 
   onBack() {
     this.ifFirst = this.page === 1 ? true : false;
@@ -89,6 +86,10 @@ export class DashboardComponent {
 
     // console.log(e);
   }
+  onDeleteUser(){
+    
+  }
+
   openDialog() {
     this.dialogDelet.open(DeleteDialogComponent);
   }
@@ -99,8 +100,11 @@ export class DashboardComponent {
       this.addUser = false;
       this.editUser = false;
       this.showlist = true;
+    } else if (e.control === 'closecall') {
+      this.getList();
+      this.addUser = false;
+      this.editUser = false;
+      this.showlist = true;
     }
   }
-
-
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialog,
@@ -6,6 +6,7 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { HttpService } from 'src/app/__service/http.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -13,7 +14,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-dialog.component.scss'],
 })
 export class DeleteDialogComponent {
-  constructor(private router:Router){}
+  constructor(private router: Router, private http: HttpService) {}
+
+
+
+  delete() {
+    
+      
+      
+  }
+  ngOnInit(): void {}
 
   // constructor(private dialog: MatDialog){}
   // onClose(){
@@ -23,6 +33,8 @@ export class DeleteDialogComponent {
   // logout(){
   //   localStorage.clear();
   //   this.router.navigateByUrl('/login');
-  
+
   // }
+
+ 
 }
