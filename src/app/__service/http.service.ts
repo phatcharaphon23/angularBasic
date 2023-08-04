@@ -18,7 +18,7 @@ export class HttpService {
 
       this.httpClient.post('/auth/auth', BODY, options).subscribe({
         next: (data: any) => {
-          console.log(data);
+          //console.log(data);
           if (data.success) {
             // console.log('SERVICE ' + data.message);
             resolve(data.messege);
@@ -46,7 +46,7 @@ export class HttpService {
       };
       this.httpClient.post(URL, BODY, options).subscribe({
         next: (data: any) => {
-          console.log(data)
+          //console.log(data)
           if (data.success) {
             resolve(data.messege);
             console.log(data.messege);
