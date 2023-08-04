@@ -19,22 +19,8 @@ export class DeleteDialogComponent {
 
 
   delete() {
-    
-      
       
   }
   ngOnInit(): void {}
-
-  // constructor(private dialog: MatDialog){}
-  // onClose(){
-  //   localStorage.setItem('toggle', 'N')
-
-  // }
-  // logout(){
-  //   localStorage.clear();
-  //   this.router.navigateByUrl('/login');
-
-  // }
-
  
 }
