@@ -1,0 +1,125 @@
+API
+- Entity => MAP TABLE > DATABASE
+-- @Entity ==> ประกาศว่าเป็นคลาสแบบ Entity
+-- @Table ==> ชื่อ ตารางที่จะแมพ
+-- @Id ==> บอกว่าฟิลด์เป็น ID (JPA ใช้อ้างอิง)
+-- @Column ==> แมพ Column ในดาต้าเบส
+
+- Repository (Interface สำหรับติดต่อ Database)
+- @Repository
+
+- Service (เรียกใช้ Repository หรือ Class อื่นๆ หรือ ประมวลผลต่างๆ)
+@Service
+
+- Controller กำหนด URL ให้ Frontend เรียกใช้
+@RestController
+- การรับค่าของ Controller
+Params
+- key,value => URL+ ?key=value => http://xxx/add?id=01&username=sipp&fname=a
+==> 	@RequestParam String id,
+	@RequestParam String username,
+	@RequestParam String fname
+
+@PostMapping("/change_role")
+public Object ChangeRole(@RequestParam String id,@RequestParam String username,
+	@RequestParam String fname) {
+		return userService.ChangeRole(id, username,fname);
+	}
+
+==> Frontend ส่งค่าไปกับ URL ==> http://xxx/add?id=01&username=sipp&fname=a	
+this.httpClient.post(URL, null, options).subscribe({});
+====================================================================
+Headers
+- key, value
+==> 	HttpServletRequest httpHeader
+@PostMapping("/change_role")
+public Object ChangeRole(HttpServletRequest httpHeader) {
+		String authorization = httpHeader.getHeader("Authorization");
+		String online = GetOnline(authorization);
+		return userService.ChangeRole(online);
+	}
+==> Frontend ส่งไปในส่วน Header ==> 
+	let options = {
+        	headers: new HttpHeaders()
+          	.set('Content-Type', 'application/json; charset=utf-8')
+          	.set('Authorization', 'dfdfsdfdsf')
+      	};
+	this.httpClient.post(URL, BODY, options).subscribe({});
+
+
+Body
+- form-data => upload file, multipath
+แบบที่ 1
+@PostMapping("/change_role")
+public Object ChangeRole(String id, String username, String fname) {
+		return userService.ChangeRole(id, username,fname);
+	}
+แบบที่ 2
+@PostMapping("/change_role")
+public Object ChangeRole(users user) {
+		return userService.ChangeRole(user); 
+		// หรือ
+		return userService.ChangeRole(user.id, user.username, user.fname);
+	}
+==> Frontend 
+var BODY = new FormData();
+formdata.append("id", "01");
+formdata.append("username", "sipp");
+formdata.append("fname", "a");
+
+this.httpClient.post(URL, BODY).subscribe({});
+
+- x-www-form-urlencoded => upload file, string
+==> @RequestBody MultiValueMap<String, Object> varName
+@PostMapping("/change_role")
+public Object ChangeRole(@RequestBody MultiValueMap<String, Object> varName) {
+	String _id = String.valueOf(varName.getFirst("id"));
+	String _username = String.valueOf(varName.getFirst("username"));
+	String _fname = String.valueOf(varName.getFirst("fname"));
+		return userService.ChangeRole(_id, _username,_fname);
+	}
+==> Frontend
+let options = {
+        	headers: new HttpHeaders()
+          	.set('Content-Type', 'application/x-www-form-urlencoded')
+          	.set('Authorization', 'dfdfsdfdsf')
+      	};
+ let BODY = new URLSearchParams();
+	BODY.set("id", "01");
+	BODY.set("username", "sipp");
+	BODY.set("fname", "a");
+this.httpClient.post(URL, BODY, options).subscribe({});
+
+- JSON
+==> @RequestBody HashMap<String, Object> info
+@PostMapping("/change_role")
+public Object ChangeRole(@RequestBody HashMap<String, Object> info) {
+	String role = info.get("role").trim();
+	String user = info.get("username").trim();
+	return userService.ChangeRole(role, user);
+}
+
+==> Frontend
+	let options = {
+        	headers: new HttpHeaders()
+          	.set('Content-Type', 'application/json; charset=utf-8')
+          	.set('Authorization', 'dfdfsdfdsf')
+      	};
+	let BODY = {
+        	username: "sipp",
+        	role: "user",
+      };
+	this.httpClient.post(URL, BODY, options).subscribe({});
+
+PathVariable ==> รับค่าจาก URL
+URL : http://xxx/{Var1}/{Var2} => http://www.dptf.co.th/sipp/role
+URL : http://xxx/user/edit/{Var1}/{Var2} => http://www.dptf.co.th/user/edit/sipp/role
+@PostMapping("/chage_role/{username}/{new_role}")
+public Object ChangeRole(@PathVariable String username, @PathVariable String new_role) {
+	return userService.ChangeRole(username,role);
+}
+
+==> Frontend
+this.httpClient.post('http://www.dptf.co.th/sipp/user').subscribe({}); 
+// หรือ
+this.httpClient.post('http://www.dptf.co.th/'+ var_username +'/'+ var_role).subscribe({});
