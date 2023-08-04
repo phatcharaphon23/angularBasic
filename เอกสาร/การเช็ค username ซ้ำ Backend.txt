@@ -1,0 +1,51 @@
+submitted: boolean = false;
+
+
+เช็ค username ซ้ำ
+
+
+//
+
+//Controller
+@PostMapping("/update_user")
+public Object UpdateUser(@RequstBody HashMap<String, String> info) {
+	String userorg = info.get("username"); <== Receip org username
+	String usersn = info.get("username");
+	String pwd = info.get("password");
+	String id = info.get("id");
+	int as = Integer.parseInt(id);
+	
+	retrun userService.UpadateUser(userorg,usersn,pwd,as);
+}
+
+//Service
+public RsponseCustomize UpdateUser(String userorg,String usersn, String pwd,int id){
+	RsponseCustomize re = new RsponseCustomize();
+	re.setSuccess(false);
+	re.setMessege("Update users faild");
+	try {
+		//เช็คว่า user ถูกแก้ไขหรือไม่ โดยนำชื่อเก่ากับชื่อใน อง inut ของ frond end มาเปรียบเทียบ
+		if( !userorg.equal(usersn))  {
+		//ถ้าหาก user ไม่เท่ากัน
+			User exist = userRespository.usersExits(usersn);
+			//ถ้าพบข้อมูล แสดงว่ามีชื่อในระบบ อณุญาตแก้ไขได้
+			if(exist){
+				re.setSuccess(false);
+				re.setMessege("Username already in use");
+				//ถ้าไม่พบข้อมูล ให้สามารถ update username ได้
+				} else {
+					int updateuser = userRepository(usersn, pwd, id); 
+		// กรณีชื่อเหมือน (userorg กับ usersn) ให้ update user
+		} else {
+			int updateuser = userRepository(usersn, pwd, id); 
+		}
+		//
+		if(updateuser > 0){
+		re.setSuccess(true);
+		re.setMesseg("Username successfully upadte");
+	}catch (Exception ex) {
+		System.out.println(ex);
+	}
+	return re;
+
+}
