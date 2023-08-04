@@ -85,12 +85,7 @@ export class EditComponent implements OnInit {
       if (!username || !password) {
         return;
       }
-      // let options = {
-      //   headers: new HttpHeaders().set(
-      //     'Content-Type',
-      //     'application/json; charset=utf-8'
-      //   ),
-      // };
+
       let body = JSON.stringify({
         id: id,
         username_org: this.username,
