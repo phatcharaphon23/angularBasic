@@ -28,13 +28,23 @@ export class HeaderComponent {
       this.dialog.open(ToggleComponent, {
         width: '260px',
         position: { top: '10px' },
-        hasBackdrop: false
-      
+        hasBackdrop: false,
+
+        // รับค่า
+        // data: {
+        //   id: "id",
+        //   username: "username",
+        //   password: "passsword"
+        // }
+            
     });
+
   }else {
     this.dialog.closeAll();
     localStorage.setItem('toggle', 'N');
   }
+
+  
 
 
   }
@@ -48,5 +58,10 @@ export class HeaderComponent {
       this.dialog.closeAll();
     }
   }
+
+  //Dialog ไว้ Close
+  // dialog.afterClossed().subscribe((res) => {
+  //   console.log()
+  // });
 
 }

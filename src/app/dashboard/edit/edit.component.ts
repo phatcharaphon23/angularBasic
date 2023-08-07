@@ -15,13 +15,6 @@ export class EditComponent implements OnInit {
   username : string = '';
 
   users: any;
-  page: number = 1;
-  pages: number = 1;
-  ifFirst: boolean = false;
-  ifEnd: boolean = false;
-  hide: boolean = true;
-  showlist: boolean = true;
-  addUser: boolean = false;
   editUser: boolean = false;
   submitted: boolean = false;
   //Update
@@ -92,7 +85,7 @@ export class EditComponent implements OnInit {
         username: username,
         password: password,
       });
-      console.log(body);
+      // console.log(body);
       this.http
         .POST('/api/update_user', body)
         .then((res: any) => {

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpService } from '../__service/http.service';
 import { SnackService } from '../__service/snack.service';
 import { Route, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @Component({
@@ -12,6 +12,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 })
 export class DashboardComponent {
   users: any;
+
   page: number = 1;
   pages: number = 1;
   ifFirst: boolean = false;
@@ -19,9 +20,12 @@ export class DashboardComponent {
   showlist: boolean = true;
   addUser: boolean = false;
   editUser: boolean = false;
+  deleteUser: boolean = false;
   user: any;
 
   constructor(
+    // public data: any,
+    // @Inject(MAT_DIALOG_DATA) private data: any,
     private http: HttpService,
     private _snackBar: SnackService,
     private router: Router,
@@ -86,12 +90,28 @@ export class DashboardComponent {
 
     // console.log(e);
   }
-  onDeleteUser(){
-    
-  }
+  // onDeleteUser(){
 
-  openDialog() {
-    this.dialogDelet.open(DeleteDialogComponent);
+  // }
+
+  openDialog(e: any) {
+    let dialogRef = this.dialogDelet.open(DeleteDialogComponent, {
+      data: e,
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      // received data from confirm-component
+      console.log(res);
+      if (res.data === 'Close') {
+        this.addUser = false;
+        this.editUser = false;
+        this.showlist = true;
+      } else if (res.data === 'cancelled') {
+        this.getList();
+      this.addUser = false;
+      this.editUser = false;
+      this.showlist = true;
+      }
+    });
   }
 
   onControls(e: any) {

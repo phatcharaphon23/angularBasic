@@ -35,9 +35,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 import { MatTableModule } from '@angular/material/table';
-import { Db01Component } from './db01/db01.component';
+
 import { DeleteDialogComponent } from './dashboard/delete-dialog/delete-dialog.component';
 import { EditComponent } from './dashboard/edit/edit.component';
+import { AdduserComponent } from './dashboard/adduser/adduser.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +53,10 @@ import { EditComponent } from './dashboard/edit/edit.component';
     LogComponent,
     UsernameDirective,
     PasswordDirective,
-    Db01Component,
+
     DeleteDialogComponent,
     EditComponent,
+    AdduserComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,9 +76,11 @@ import { EditComponent } from './dashboard/edit/edit.component';
     MatExpansionModule,
     MatTableModule,
     MatMenuModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

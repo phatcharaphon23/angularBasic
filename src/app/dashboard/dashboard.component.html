@@ -13,7 +13,7 @@
           <mat-expansion-panel-header>
             <mat-panel-title>Add user</mat-panel-title>
           </mat-expansion-panel-header>
-          <div>Data add</div>
+          <div><app-adduser></app-adduser></div>
         </mat-expansion-panel>
 
         <!-- TODO LIST Edit-->
@@ -78,7 +78,7 @@
                       <mat-icon>password</mat-icon> Change password
                       {{ elememt.username }}
                     </button>
-                    <button mat-menu-item (click)="openDialog()">
+                    <button mat-menu-item (click)="openDialog(elememt)">
                       <mat-icon>delete</mat-icon>Delete {{ elememt.username }}
                     </button>
                   </mat-menu>
