@@ -19,5 +19,8 @@ export class ToggleComponent {
     localStorage.clear();
     this.router.navigateByUrl('/login');
   }
+  // onChangPassword(){
+
+  // }
 
 }

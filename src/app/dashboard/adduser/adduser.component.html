@@ -1,35 +1,107 @@
-<p>adduser works!</p>
+<p>เพิ่ม Account!</p>
 <div [formGroup]="form">
-    <p>
+  <!-- <p>
         <mat-form-field appearance="outline">
             
           <mat-label style="color: white">No.</mat-label>
           <input matInput formControlName="id" />
     
           <mat-icon matSuffix>numbers</mat-icon>
-          <!-- <mat-hint class="text-danger" *ngIf="form.controls['id'].invalid">Please enter your username</mat-hint> -->
-        </mat-form-field>
-      </p>
+           <mat-hint class="text-danger" *ngIf="form.controls['id'].invalid">Please enter your username</mat-hint> -->
+  <!-- </mat-form-field>
+      </p>  -->
+  <p>
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <mat-select formControlName="id">
+        <!-- <mat-select-trigger>
+          {{id.value?.[0] || ''}}
+      <span *ngIf="(id.value?.length || 0) > 1" class="example-additional-selection">
+        (+{{(id.value?.length || 0) - 1}} {{id.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+        </mat-select-trigger> -->
+        <mat-option *ngFor="let id of idList" [value]="id">{{ id }}</mat-option>
+        <mat-hint class="text-danger" *ngIf="form.controls['id'].invalid"
+          >Please select your ID</mat-hint
+        >
+      </mat-select>
+    </mat-form-field>
+  </p>
   <p>
     <mat-form-field appearance="outline">
-        
       <mat-label style="color: white">Username</mat-label>
-      <input matInput placeholder="username" formControlName="username" />
+      <input
+        matInput
+        placeholder="username"
+        formControlName="username"
+        (cut)="onPrevent($event)"
+        (copy)="onPrevent($event)"
+        (paste)="onPrevent($event)"
+      />
 
       <mat-icon matSuffix>account_circle</mat-icon>
-      <mat-hint class="text-danger" *ngIf="form.controls['username'].invalid">Please enter your username</mat-hint>
+      <mat-hint class="text-danger" *ngIf="form.controls['username'].invalid"
+        >Please enter your username</mat-hint
+      >
     </mat-form-field>
   </p>
   <p>
     <mat-form-field appearance="outline">
       <mat-label style="color: white">Password</mat-label>
-      <input matInput placeholder="password" formControlName="password" />
-      <mat-icon matSuffix>password</mat-icon>
-      <mat-hint>Please enter your password</mat-hint>
+      <input
+        matInput
+        _password
+        placeholder="password"
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        (cut)="onPrevent($event)"
+        (copy)="onPrevent($event)"
+        (paste)="onPrevent($event)"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-hint class="text-danger" *ngIf="form.controls['password'].invalid"
+        >Please enter your password</mat-hint
+      >
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label style="color: white">Confirm Password</mat-label>
+      <input
+        matInput
+        _password
+        placeholder="Confirm Password"
+        [type]="hide ? 'password' : 'text'"
+        formControlName="confirm_password"
+        (cut)="onPrevent($event)"
+        (copy)="onPrevent($event)"
+        (paste)="onPrevent($event)"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-hint class="text-danger" *ngIf="form.controls['confirm_password'].invalid"
+        >confirm password</mat-hint
+      >
     </mat-form-field>
   </p>
   <div>
-    <button mat-raised-button color="accent" >Submit</button>&nbsp;
+    <button mat-raised-button color="accent" (click)="onSave()">Submit</button>&nbsp;
     <button mat-raised-button (click)="onClose()">Close</button>
   </div>
 </div>

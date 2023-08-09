@@ -1,9 +1,11 @@
+import { GlobalService } from './../__service/global.service';
 import { Component, Inject } from '@angular/core';
 import { HttpService } from '../__service/http.service';
 import { SnackService } from '../__service/snack.service';
 import { Route, Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,6 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 })
 export class DashboardComponent {
   users: any;
-
   page: number = 1;
   pages: number = 1;
   ifFirst: boolean = false;
@@ -20,10 +21,12 @@ export class DashboardComponent {
   showlist: boolean = true;
   addUser: boolean = false;
   editUser: boolean = false;
+  changPassword: boolean = false;
   deleteUser: boolean = false;
   user: any;
 
   constructor(
+    private globalService: GlobalService,
     // public data: any,
     // @Inject(MAT_DIALOG_DATA) private data: any,
     private http: HttpService,
@@ -80,19 +83,26 @@ export class DashboardComponent {
     this.addUser = true;
     this.editUser = false;
     this.showlist = false;
+    // this.changPassword = false;
+    
   }
   onEditUser(e: any) {
     this.user = e;
-    //
     this.addUser = false;
     this.editUser = true;
     this.showlist = false;
-
-    // console.log(e);
+    // this.changPassword = false;
+    
   }
-  // onDeleteUser(){
-
-  // }
+  onChangPassword() {
+    this.addUser = false;
+    this.editUser = false;
+    this.showlist = false;
+    this.changPassword = true;
+   
+    // this.changPassword = true;
+    
+  }
 
   openDialog(e: any) {
     let dialogRef = this.dialogDelet.open(DeleteDialogComponent, {
@@ -105,25 +115,30 @@ export class DashboardComponent {
         this.addUser = false;
         this.editUser = false;
         this.showlist = true;
+        
       } else if (res.data === 'cancelled') {
         this.getList();
-      this.addUser = false;
-      this.editUser = false;
-      this.showlist = true;
+        this.addUser = false;
+        this.editUser = false;
+        this.showlist = true;
+       
       }
     });
   }
 
   onControls(e: any) {
+    this.user = '';
     console.log(e);
     if (e.control === 'close') {
       this.addUser = false;
       this.editUser = false;
+      this.changPassword = false;
       this.showlist = true;
     } else if (e.control === 'closecall') {
       this.getList();
       this.addUser = false;
       this.editUser = false;
+      this.changPassword = false;
       this.showlist = true;
     }
   }

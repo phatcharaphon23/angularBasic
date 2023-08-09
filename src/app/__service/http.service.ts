@@ -15,7 +15,6 @@ export class HttpService {
           'application/x-www-form-urlencoded'
         ),
       };
-
       this.httpClient.post('/auth/auth', BODY, options).subscribe({
         next: (data: any) => {
           //console.log(data);
@@ -32,7 +31,7 @@ export class HttpService {
       });
     });
   }
-  async POST(URL: string, BODY: any) {
+  async POST(URL: string, BODY: any ) {
     return new Promise((resolve, reject) => {
       let options = {
         headers: new HttpHeaders()
@@ -47,10 +46,9 @@ export class HttpService {
       this.httpClient.post(URL, BODY, options).subscribe({
         next: (data: any) => {
           // console.log(data)
-         
           if (data.success) {
             resolve(data.messege);
-            // console.log(data.messege);
+            console.log(data.messege);
           } else {
             reject(data.messege);
           }

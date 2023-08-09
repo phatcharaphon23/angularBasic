@@ -32,6 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { MatTableModule } from '@angular/material/table';
@@ -39,6 +40,7 @@ import { MatTableModule } from '@angular/material/table';
 import { DeleteDialogComponent } from './dashboard/delete-dialog/delete-dialog.component';
 import { EditComponent } from './dashboard/edit/edit.component';
 import { AdduserComponent } from './dashboard/adduser/adduser.component';
+import { ChangpasswordComponent } from './dashboard/changpassword/changpassword.component';
 
 @NgModule({
   declarations: [
@@ -53,10 +55,11 @@ import { AdduserComponent } from './dashboard/adduser/adduser.component';
     LogComponent,
     UsernameDirective,
     PasswordDirective,
-
+    
     DeleteDialogComponent,
     EditComponent,
     AdduserComponent,
+    ChangpasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,7 @@ import { AdduserComponent } from './dashboard/adduser/adduser.component';
     MatTableModule,
     MatMenuModule,
     MatPaginatorModule,
-    
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

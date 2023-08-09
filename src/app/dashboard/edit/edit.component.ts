@@ -13,7 +13,7 @@ import { SnackService } from 'src/app/__service/snack.service';
 })
 export class EditComponent implements OnInit {
   username : string = '';
-
+  // user: any;
   users: any;
   editUser: boolean = false;
   submitted: boolean = false;
@@ -27,36 +27,32 @@ export class EditComponent implements OnInit {
   @Input() set user(value: any) {
     if (value) {
       this.username = value.username;
-      // console.log(value);
+      console.log(value);
       this.form.patchValue({
         id: value.id,
         username: value.username,
         password: value.password,
       });
-      this.form.controls['username'];
+      // this.form.controls['username'];
     }
+   
   }
 
   @Output() controls = new EventEmitter();
   constructor(
-    private httpClient: HttpClient,
     private http: HttpService,
-    private jwt: JwtService,
     private _snackBar: SnackService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    // this.getList();
-    // this.onSave();
+ 
   }
   onClose() {
     this.controls.emit({
       control: 'close',
     });
   }
-
- 
 
   onSave() {
     // console.log(this.user);
@@ -71,7 +67,7 @@ export class EditComponent implements OnInit {
         // console.log("// ");
       }
       if (!password) {
-        this.form.controls['password'].setErrors({ ivalid: true });
+        this.form.controls['password'].setErrors({ invalid: true });
         // console.log("password");
       }
 
@@ -87,7 +83,7 @@ export class EditComponent implements OnInit {
       });
       // console.log(body);
       this.http
-        .POST('/api/update_user', body)
+        .POST('/api/update_user', body, )
         .then((res: any) => {
           this.controls.emit({
             control: 'closecall',

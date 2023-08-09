@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GlobalService {
+
+  public userinfo:any;
   constructor(private router: Router) {}
 
   isLogin: boolean = localStorage.getItem('token') ? true : false;
@@ -24,4 +26,5 @@ export class GlobalService {
       return true;
     }
   }
+  
 }

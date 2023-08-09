@@ -6,18 +6,17 @@ import { JwtService } from '../__service/jwt.service';
 import { Router } from '@angular/router';
 import { SnackService } from '../__service/snack.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit{
+export class LoginComponent implements OnInit {
   hide: boolean = true;
   submitted: boolean = false;
 
   form = new FormGroup({
-    username: new FormControl('', [Validators.minLength(1)]),
+    username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.minLength(1)]),
   });
 
@@ -28,25 +27,23 @@ export class LoginComponent  implements OnInit{
     private _snackBar: SnackService,
 
     private router: Router
-  ) 
-  {}
+  ) {}
   // onKeyup(e: KeyboardEvent) {
   //   console.log(e.key);
   // }
-  
-  ngOnInit() : void{
-    this.CheckLoggedIn();
 
+  ngOnInit(): void {
+    this.CheckLoggedIn();
   }
-  CheckLoggedIn(){
+
+  CheckLoggedIn() {
     let token = localStorage.getItem('token') || '';
-    try{
+    try {
       let jwt = this.jwt.getDecodeAccessToken(token);
       this.router.navigateByUrl('dashboard');
-    } catch (err){
+    } catch (err) {
       localStorage.clear();
     }
-    
   }
 
   onSubmit() {
@@ -58,7 +55,7 @@ export class LoginComponent  implements OnInit{
         this.form.controls['username'].setErrors({ invalid: true });
       }
       if (!password) {
-        this.form.controls['password'].setErrors({ ivalid: true });
+        this.form.controls['password'].setErrors({ invalid: true });
       }
       if (!username || !password) {
         return;
@@ -72,10 +69,12 @@ export class LoginComponent  implements OnInit{
       };
 
       let body = JSON.stringify({
-        "username": username,
+        username: username,
+        // password: password,
       });
       // console.log(body);
-      this.httpClient.post('/gest/get_exits_token', body, options).subscribe({
+      this.httpClient
+      .post('/gest/get_exits_token', body, options).subscribe({
         next: (data: any) => {
           // console.log(data)
           if (data.success) {
@@ -113,7 +112,7 @@ export class LoginComponent  implements OnInit{
           // console.log(data);
         },
         error: (err: any) => {
-          console.log(err);
+          // console.log(err);
           this._snackBar.openSnackBar(err, 'error', 10000); //ใส่ snacbar
         },
       });
@@ -121,7 +120,7 @@ export class LoginComponent  implements OnInit{
     }
   }
 
-onPrevent(e: ClipboardEvent){
-  e.preventDefault();
-}
+  onPrevent(e: ClipboardEvent) {
+    e.preventDefault();
+  }
 }

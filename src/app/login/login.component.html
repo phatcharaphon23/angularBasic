@@ -9,7 +9,7 @@
           <mat-label>Username</mat-label>
           <input
             matInput
-            _username
+           
             placeholder="Username"
             formControlName="username"
             (cut)="onPrevent($event)"
@@ -20,7 +20,7 @@
           <mat-hint
             class="text-danger"
             *ngIf="form.controls['username'].invalid"
-            >This fild</mat-hint
+            >username is required</mat-hint
           >
         </mat-form-field>
       </p>
@@ -44,8 +44,8 @@
             (click)="hide = !hide"
             [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide"
-          >
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          ><mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            
           </button>
           <mat-hint
             class="text-danger"
