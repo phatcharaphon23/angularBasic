@@ -94,7 +94,8 @@ export class DashboardComponent {
     // this.changPassword = false;
     
   }
-  onChangPassword() {
+  onChangPassword(e: any) {
+    this.user = e;
     this.addUser = false;
     this.editUser = false;
     this.showlist = false;

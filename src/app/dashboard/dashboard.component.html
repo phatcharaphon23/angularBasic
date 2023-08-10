@@ -42,7 +42,7 @@
             <mat-panel-title>CHANG PASSWORD</mat-panel-title>
           </mat-expansion-panel-header>
           <div>
-            <app-changpassword (controls)="onControls($event)"></app-changpassword>
+            <app-changpassword [user]="user" (controls)="onControls($event)"></app-changpassword>
           </div>
         </mat-expansion-panel>
         
@@ -93,7 +93,7 @@
                     </button>
 
                     <!--Change password-->
-                    <button mat-menu-item (click)="onChangPassword()">
+                    <button mat-menu-item (click)="onChangPassword(elememt)">
                       <span>
                         <mat-icon>password</mat-icon> Change password
                         {{ elememt.username }}
